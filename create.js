@@ -12,7 +12,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 databaseref = firebase.database().ref("/").child("Kwitter");
-//auth = firebase.auth();
+auth = firebase.auth();
+user = auth.currentUser;
 
 function create(){
     var text = document.getElementById("post").innerHTML;
@@ -21,7 +22,7 @@ function create(){
         databaseref.update({
             posts : id + 1
         });
-        var innerhtml = '<div class="media border rounded text-left p-3 mt-1"><img src="' + window.localStorage.getItem("img") + '" class="mr-3 rounded-circle" style="width: 45px!important; height: 45px!important"><div class="media-body"><h4>' + window.localStorage.getItem("name") + '</h4><p>' + text + '</p></div></div>';
+        var innerhtml = '<div class="media border rounded text-left p-3 mt-1"><img src="' + user.photoURL + '" class="mr-3 rounded-circle" style="width: 45px!important; height: 45px!important"><div class="media-body"><h4>' + user.displayName + '</h4><p>' + text + '</p></div></div>';
         id = id.toString();
         databaseref.child("all_posts").update({
             [id] : innerhtml

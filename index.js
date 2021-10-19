@@ -13,21 +13,16 @@ firebase.initializeApp(firebaseConfig);
 
 databaseref = firebase.database().ref("/").child("Kwitter");
 auth = firebase.auth();
+user = auth.currentUser;
 
 window.addEventListener('load', function(){
     if (window.localStorage.getItem("email") === null){
         window.location = "login.html";
     }
-    databaseref.child(window.localStorage.getItem("email").replace(".", "-")).child('profileimg').on('value', function(snap){
-        document.getElementById("prof_pic").src = snap.val();
-        window.localStorage.setItem("img", snap.val());
-    });
-    databaseref.child(window.localStorage.getItem("email").replace(".", "-")).child('name').on('value', function(snap){
-        document.getElementById("name").innerHTML = snap.val();
-        document.getElementById("head_name").innerHTML = snap.val();
-        window.localStorage.setItem("name", snap.val());
-    });
-    document.getElementById("email").innerHTML = window.localStorage.getItem("email");
+    document.getElementById("prof_pic").src = user.photoURL;
+    document.getElementById("name").innerHTML = user.displayName;
+    document.getElementById("head_name").innerHTML = user.displayName;
+    document.getElementById("email").innerHTML = user.email;
     databaseref.child("all_posts").on('value', function(snap){
         document.getElementById("home").innerHTML = "";
         snap.forEach(function(snapshot){
@@ -39,20 +34,14 @@ window.addEventListener('load', function(){
 function logout(){
     auth.signOut().then(function(){
         window.alert("Logged out successfully.");
-        window.localStorage.removeItem("email");
         window.location = "login.html";
-        window.localStorage.removeItem("img");
-        window.localStorage.removeItem("name");
     });
 }
 
 function changeprofile(){
     var img = window.prompt("Please enter image URL:", "https://www.w3schools.com/bootstrap4/img_avatar3.png");
     if (img != ""){
-        var email = window.localStorage.getItem("email").replace(".", "-");
-        databaseref.child(email).update({
-            profileimg : img
-        });
+        user.photoURL = img;
     }
 }
 

@@ -13,9 +13,10 @@ firebase.initializeApp(firebaseConfig);
 
 databaseref = firebase.database().ref("/").child("Kwitter");
 auth = firebase.auth();
+user = auth.currentUser
 
 window.addEventListener('load', function(){
-    if (window.localStorage.getItem("email") !== null){
+    if (user !== null){
         window.location = "index.html";
     }
 });
@@ -29,7 +30,6 @@ function login(){
     var email = document.getElementById("username").value;
     var pwd = document.getElementById("password").value;
     auth.signInWithEmailAndPassword(email, pwd).then(function(usercredential){
-        window.localStorage.setItem("email", email);
         window.location = "index.html";
     }).catch(function(error){
         var message = error.message;

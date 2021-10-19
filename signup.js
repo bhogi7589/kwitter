@@ -14,12 +14,6 @@ firebase.initializeApp(firebaseConfig);
 databaseref = firebase.database().ref("/").child("Kwitter");
 auth = firebase.auth();
 
-window.addEventListener('load', function(){
-    if (window.localStorage.getItem("username") !== null){
-        window.location = "index.html";
-    }
-});
-
 document.getElementById("signupform").addEventListener('submit', addUser)
 
 function addUser(e){
@@ -35,10 +29,11 @@ function addUser(e){
             window.localStorage.setItem("email", email);
             var replaced = email.replace(".", "-");
             databaseref.child(replaced).update({
-                name : name,
-                profileimg : "https://www.w3schools.com/bootstrap4/img_avatar3.png",
-                rooms : "",
+                rooms : ""
             });
+            var user = auth.currentUser;
+            user.displayName = name;
+            user.photoURL = "https://www.w3schools.com/bootstrap4/img_avatar3.png";
             window.location = "index.html";
         }).catch(function(error){
             var message = error.message;
