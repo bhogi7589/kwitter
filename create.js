@@ -16,16 +16,16 @@ databaseref = firebase.database().ref("/").child("Kwitter");
 
 function create(){
     var text = document.getElementById("post").innerHTML;
+    databaseref.child(window.localStorage.getItem("email").replace(".", "-")).child("profileimg").once('value').then(function(snap){
+        window.localStorage.setItem("img", snap.val());
+    });
+    databaseref.child(window.localStorage.getItem("email").replace(".", "-")).child("name").once('value').then(function(snap){
+        window.localStorage.setItem("name", snap.val());
+    });
     databaseref.child("posts").once('value').then(function(snap){
         var id = snap.val();
         databaseref.update({
             posts : id + 1
-        });
-        databaseref.child(window.localStorage.getItem("email").replace(".", "-")).child("profileimg").once('value').then(function(snap){
-            window.localStorage.setItem("img", snap.val());
-        });
-        databaseref.child(window.localStorage.getItem("email").replace(".", "-")).child("name").once('value').then(function(snap){
-            window.localStorage.setItem("name", snap.val());
         });
         var innerhtml = '<div class="media border rounded text-left p-3 mt-1"><img src="' + window.localStorage.getItem("img") + '" class="mr-3 rounded-circle" style="width: 45px!important; height: 45px!important"><div class="media-body"><h4>' + window.localStorage.getItem("name") + '</h4><p>' + text + '</p></div></div>';
         id = id.toString();
