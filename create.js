@@ -13,7 +13,7 @@ firebase.initializeApp(firebaseConfig);
 
 databaseref = firebase.database().ref("/").child("Kwitter");
 auth = firebase.auth();
-user = auth.currentUser;
+user = JSON.parse(window.localStorage.getItem("firebase:authUser:AIzaSyC-Chsq9HzfjK81mYYYx7KO1BgT7QPPNMI:[DEFAULT]"));
 
 function create(){
     var text = document.getElementById("post").innerHTML;

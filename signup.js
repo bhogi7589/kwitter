@@ -26,12 +26,20 @@ function addUser(e){
     var name = document.getElementById("name").value;
     if (pwd == confpwd){
         auth.createUserWithEmailAndPassword(email, pwd).then(function(cred){
-            window.localStorage.setItem("name", name);
             var replaced = email.replace(".", "-");
             databaseref.child(replaced).update({
                 rooms : ""
             });
-            window.location = "index.html";
+            var user = auth.currentUser;
+            user.updateProfile({
+                displayName : name,
+                photoURL : "https://www.w3schools.com/bootstrap4/img_avatar3.png"
+            }).then(function(){
+                window.location = "index.html";
+            }).catch(function(error){
+                var message = error.message;
+                document.getElementById("error").innerHTML = message;    
+            });
         }).catch(function(error){
             var message = error.message;
             document.getElementById("error").innerHTML = message;

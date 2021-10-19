@@ -13,16 +13,12 @@ firebase.initializeApp(firebaseConfig);
 
 databaseref = firebase.database().ref("/").child("Kwitter");
 auth = firebase.auth();
-user = auth.currentUser;
+user = JSON.parse(window.localStorage.getItem("firebase:authUser:AIzaSyC-Chsq9HzfjK81mYYYx7KO1BgT7QPPNMI:[DEFAULT]"));
 
 window.addEventListener('load', function(){
-    if (window.localStorage.getItem("email") === null){
+    if (user == null){
         window.location = "login.html";
     }
-    var name = window.localStorage.getItem("name");
-    window.localStorage.removeItem("name");
-    user.displayName = name;
-    user.photoURL = "https://www.w3schools.com/bootstrap4/img_avatar3.png";
     document.getElementById("prof_pic").src = user.photoURL;
     document.getElementById("name").innerHTML = user.displayName;
     document.getElementById("head_name").innerHTML = user.displayName;
@@ -43,9 +39,15 @@ function logout(){
 }
 
 function changeprofile(){
-    var img = window.prompt("Please enter image URL:", "https://www.w3schools.com/bootstrap4/img_avatar3.png");
+    var img = window.prompt("Please enter image URL:");
     if (img != ""){
-        user.photoURL = img;
+        auth.currentUser.updateProfile({
+            photoURL : img
+        }).then(function(){
+            document.getElementById("prof_pic").src = img;
+        }).catch(function(error){
+            console.log(error.message);
+        });
     }
 }
 
