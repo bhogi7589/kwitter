@@ -20,10 +20,12 @@ window.addEventListener('load', function(){
     }
     databaseref.child(window.localStorage.getItem("email").replace(".", "-")).child('profileimg').on('value', function(snap){
         document.getElementById("prof_pic").src = snap.val();
+        window.localStorage.setItem("img", snap.val());
     });
     databaseref.child(window.localStorage.getItem("email").replace(".", "-")).child('name').on('value', function(snap){
         document.getElementById("name").innerHTML = snap.val();
         document.getElementById("head_name").innerHTML = snap.val();
+        window.localStorage.setItem("name", snap.val());
     });
     document.getElementById("email").innerHTML = window.localStorage.getItem("email");
     databaseref.child("all_posts").on('value', function(snap){
