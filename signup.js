@@ -26,14 +26,11 @@ function addUser(e){
     var name = document.getElementById("name").value;
     if (pwd == confpwd){
         auth.createUserWithEmailAndPassword(email, pwd).then(function(cred){
-            window.localStorage.setItem("email", email);
+            window.localStorage.setItem("name", name);
             var replaced = email.replace(".", "-");
             databaseref.child(replaced).update({
                 rooms : ""
             });
-            var user = auth.currentUser;
-            user.displayName = name;
-            user.photoURL = "https://www.w3schools.com/bootstrap4/img_avatar3.png";
             window.location = "index.html";
         }).catch(function(error){
             var message = error.message;

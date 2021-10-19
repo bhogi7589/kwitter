@@ -19,6 +19,10 @@ window.addEventListener('load', function(){
     if (window.localStorage.getItem("email") === null){
         window.location = "login.html";
     }
+    var name = window.localStorage.getItem("name");
+    window.localStorage.removeItem("name");
+    user.displayName = name;
+    user.photoURL = "https://www.w3schools.com/bootstrap4/img_avatar3.png";
     document.getElementById("prof_pic").src = user.photoURL;
     document.getElementById("name").innerHTML = user.displayName;
     document.getElementById("head_name").innerHTML = user.displayName;
