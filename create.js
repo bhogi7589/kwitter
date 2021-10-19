@@ -16,12 +16,6 @@ databaseref = firebase.database().ref("/").child("Kwitter");
 
 function create(){
     var text = document.getElementById("post").innerHTML;
-    databaseref.child(window.localStorage.getItem("email").replace(".", "-")).child("profileimg").once('value').then(function(snap){
-        window.localStorage.setItem("img", snap.val());
-    });
-    databaseref.child(window.localStorage.getItem("email").replace(".", "-")).child("name").once('value').then(function(snap){
-        window.localStorage.setItem("name", snap.val());
-    });
     databaseref.child("posts").once('value').then(function(snap){
         var id = snap.val();
         databaseref.update({

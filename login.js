@@ -31,6 +31,12 @@ function login(){
     auth.signInWithEmailAndPassword(email, pwd).then(function(usercredential){
         window.localStorage.setItem("email", email);
         window.location = "index.html";
+        databaseref.child(window.localStorage.getItem("email").replace(".", "-")).child("profileimg").once('value').then(function(snap){
+            window.localStorage.setItem("img", snap.val());
+        });
+        databaseref.child(window.localStorage.getItem("email").replace(".", "-")).child("name").once('value').then(function(snap){
+            window.localStorage.setItem("name", snap.val());
+        });    
     }).catch(function(error){
         var message = error.message;
         document.getElementById("error").innerHTML = message;
