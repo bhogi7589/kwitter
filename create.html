@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Kwitter - Create Post</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://bhogi7589.github.io/bs4-helper/bs4-helper.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://bhogi7589.github.io/bs4-helper/bs4-helper.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body class="theme-dark">
+        <script src="create.js"></script>
+        <div class="page-header">
+            <h1 class="heading heading-medium">Create a Post</h1>
+        </div>
+        <div class="container">
+            <label>Type post:</label>
+            <div class="text-editor text-left" id="post"></div><br><br>
+            <button class="btn btn-primary" type="button" onclick="create()">Create new post</button>
+        </div>
+    </body>
+</html>

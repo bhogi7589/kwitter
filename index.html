@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Kwitter - Home</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://bhogi7589.github.io/bs4-helper/bs4-helper.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://bhogi7589.github.io/bs4-helper/bs4-helper.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            #prof_pic {
+                max-width: 240px!important;
+            }
+        </style>
+    </head>
+    <body class="theme-dark">
+        <script src="index.js"></script>
+        <div class="container">
+            <h1 class="heading heading-underline display-4">Welcome <span id="head_name"></span>!</h1>
+            <ul class="nav nav-tabs">
+                <li class="nav-item"><a href="#home" data-toggle="tab" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="#profile" data-toggle="tab" class="nav-link">Profile</a></li>
+                <li class="nav-item"><a href="#tools" data-toggle="tab" class="nav-link">Tools</a></li>
+                <li class="nav-item"><a href="#chat" data-toggle="tab" class="nav-link">Chat</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane container-fluid active" id="home"></div>
+                <div class="tab-pane container-fluid fade" id="profile">
+                    <img src="https://www.w3schools.com/bootstrap4/img_avatar3.png" alt="Profile" class="rounded-circle img-responsive pb-1" id="prof_pic"><br>
+                    <button class="btn btn-primary btn-sm" type="button" onclick="changeprofile()">Change Profile</button><br><br>
+                    <h2 id="name"></h2>
+                    <p>Email: <span id="email"></span></p>
+                </div>
+                <div class="tab-pane container-fluid fade" id="tools">
+                    <a href="create.html" class="btn btn-success" target="_blank">Create new post <span class="fa fa-plus"></span></a><br><br>
+                    <button class="btn btn-info" onclick="logout()" type="button">Logout <span class="fa fa-sign-out"></span></button><br><br>
+                    <button class="btn btn-secondary" onclick="change()" type="button">Change Password</button>
+                </div>
+                <div class="tab-pane container-fluid fade" id="chat"></div>
+            </div>
+        </div>
+    </body>
+</html>

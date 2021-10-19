@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Kwitter - Login</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://bhogi7589.github.io/bs4-helper/bs4-helper.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://bhogi7589.github.io/bs4-helper/bs4-helper.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <button id="theme-switch" class="btn btn-light fixed-top-right"></button>
+        <div class="page-header">
+            <h1 class="heading display-3">Kwitter - Sign In</h1>
+        </div>
+        <div class="container">
+            <form action="javascript:void(0)" id="loginform" class="theme-white needs-validation px-5 pb-5 pt-3 col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto mt-3 rounded shadow" novalidate>
+                <h1 class="heading heading-underline">Login to your account</h1>
+                <div class="form-inner">
+                    <div class="form-group">
+                        <label for="username">Email:</label>
+                        <input type="email" id="username" class="form-control" placeholder="Email" name="username" required>
+                        <div class="invalid-feedback">Please fill out this field</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" class="form-control" placeholder="Password" name="password" required>
+                        <div class="invalid-feedback">Please fill out this field</div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input password-visibility-control" data-control="password" id="control" name="control">
+                            <label class="custom-control-label" for="control">Show password</label>
+                        </div>
+                    </div>
+                </div>
+                <p id="error" class="text-danger"></p>
+                <a href="signup.html" class="text-primary">Don't have an account? Sign Up.</a><br>
+                <button type="submit" class="btn btn-primary btn-block">Log In <span class="fa fa-sign-in"></span></button><br><br>
+                <button class="btn btn-secondary" onclick="change()" type="button">Forgot Password? Change it.</button>
+            </form>
+        </div>
+        <script src="login.js"></script>
+    </body>
+</html>
