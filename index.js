@@ -39,6 +39,8 @@ function logout(){
         window.alert("Logged out successfully.");
         window.localStorage.removeItem("email");
         window.location = "login.html";
+        window.localStorage.removeItem("img");
+        window.localStorage.removeItem("name");
     });
 }
 

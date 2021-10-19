@@ -28,11 +28,10 @@ function create(){
             window.localStorage.setItem("name", snap.val());
         });
         var innerhtml = '<div class="media border rounded text-left p-3 mt-1"><img src="' + window.localStorage.getItem("img") + '" class="mr-3 rounded-circle" style="width: 45px!important; height: 45px!important"><div class="media-body"><h4>' + window.localStorage.getItem("name") + '</h4><p>' + text + '</p></div></div>';
-        window.localStorage.removeItem("img");
-        window.localStorage.removeItem("name");
         id = id.toString();
         databaseref.child("all_posts").update({
             [id] : innerhtml
         });
+        window.alert("Post created successfully.")
     });
 }
