@@ -29,6 +29,20 @@ window.addEventListener('load', function(){
             document.getElementById("home").innerHTML = snapshot.val() + document.getElementById("home").innerHTML;
         });
     });
+    databaseref.child(user.email.replace(".", "-")).child("rooms").on('value', function(snap){
+        document.getElementById("rooms").innerHTML = "";
+        var rooms = snap.val().toString().split("~`~");
+        for (var i = 0; i < rooms.length; i++){
+            var key = rooms[i];
+            if (key != ""){
+                console.log(key);
+                databaseref.child("all_rooms").child(key).child("name").on('value', function(snapshot){
+                    var name = snapshot.val().toString();
+                    document.getElementById("rooms").innerHTML += '<a class="btn btn-primary btn-block" target="_blank" href="chat.html?id=' + key + '">' + name + '</a>';    
+                });
+            }
+        }
+    });
 });
 
 function logout(){
@@ -39,12 +53,12 @@ function logout(){
 }
 
 function changeprofile(){
-    var img = window.prompt("Please enter image URL:");
+    var img = window.prompt("Please enter image URL:", user.photoURL);
     if (img != ""){
         auth.currentUser.updateProfile({
             photoURL : img
         }).then(function(){
-            document.getElementById("prof_pic").src = img;
+            document.getElementById("prof_pic").src = user.photoURL;
         }).catch(function(error){
             console.log(error.message);
         });
@@ -73,4 +87,22 @@ function reply(elem, id){
             [id] : toadd
         });
     });
+}
+
+function createroom(){
+    var room = window.prompt("Enter room name:").trim();
+    if (room != ""){
+        var id = databaseref.child("all_rooms").push().key.toString();
+        databaseref.child("all_rooms").child(id).update({
+            name : room
+        });
+        databaseref.child(user.email.replace(".", "-")).child("rooms").once('value').then(function(snap){
+            var rooms = snap.val().toString().split("~`~");
+            rooms.push(id);
+            var str_rooms = rooms.join("~`~");
+            databaseref.child(user.email.replace(".", "-")).update({
+                rooms : str_rooms
+            });
+        });
+    }
 }

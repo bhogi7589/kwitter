@@ -22,6 +22,11 @@ body:not(.theme-dark) .border {
 
 .nav-pills {
     border-bottom: 5px solid #007bff;
+    background-color: #ddd!important;
+}
+
+.theme-dark .nav-pills {
+    background-color: #222!important;
 }
 
 .nav-link {

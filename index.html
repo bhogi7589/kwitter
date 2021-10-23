@@ -15,19 +15,19 @@
         <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
         <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+        <script src="index.js"></script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body class="theme-dark">
         <button id="theme-switch" class="btn btn-light fixed-top-right"></button>
-        <script src="index.js"></script>
         <div class="container">
             <h1 class="heading heading-underline display-4">Welcome <span id="head_name"></span>!</h1>
-            <ul class="nav nav-pills nav-justified">
-                <li class="nav-item"><a href="#home" data-toggle="pill" class="nav-link active">Home</a></li>
-                <li class="nav-item"><a href="#profile" data-toggle="pill" class="nav-link">Profile</a></li>
-                <li class="nav-item"><a href="#tools" data-toggle="pill" class="nav-link">Tools</a></li>
-                <li class="nav-item"><a href="#chat" data-toggle="pill" class="nav-link">Chat</a></li>
+            <ul class="nav nav-pills nav-justified sticky-top">
+                <li class="nav-item"><a href="#home" data-toggle="pill" class="nav-link active"><span class="fa fa-home"></span>&nbsp;&nbsp;Home</a></li>
+                <li class="nav-item"><a href="#profile" data-toggle="pill" class="nav-link"><span class="fa fa-user-circle-o"></span>&nbsp;&nbsp;Profile</a></li>
+                <li class="nav-item"><a href="#tools" data-toggle="pill" class="nav-link"><span class="fa fa-cogs"></span>&nbsp;&nbsp;Tools</a></li>
+                <li class="nav-item"><a href="#chat" data-toggle="pill" class="nav-link"><span class="fa fa-comments"></span>&nbsp;&nbsp;Chat</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane container-fluid active" id="home"></div>
@@ -42,7 +42,10 @@
                     <button class="btn btn-info" onclick="logout()" type="button">Logout <span class="fa fa-sign-out"></span></button><br><br>
                     <button class="btn btn-secondary" onclick="change()" type="button">Change Password</button>
                 </div>
-                <div class="tab-pane container-fluid fade" id="chat"></div>
+                <div class="tab-pane container-fluid fade" id="chat">
+                    <div class="btn-group-vertical w-100 pb-3" id="rooms"></div>
+                    <button class="btn btn-success" type="button" onclick="createroom()">Create new room <span class="fa fa-plus"></span></button>
+                </div>
             </div>
         </div>
     </body>
