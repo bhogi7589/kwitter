@@ -1,0 +1,17 @@
+#prof_pic {
+    max-width: 240px!important;
+}
+
+.media img:not(.profile) {
+    border-radius: .25rem!important;
+    width: 100%!important;
+    max-width: 100%!important;
+    height: auto!important;
+}
+
+.profile {
+    border-radius: 50%!important;
+    width: 45px!important;
+    height: 45px!important;
+    margin-right: 1rem!important;
+}

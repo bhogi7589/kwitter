@@ -13,6 +13,7 @@ firebase.initializeApp(firebaseConfig);
 
 databaseref = firebase.database().ref("/").child("Kwitter");
 auth = firebase.auth();
+user = JSON.parse(window.localStorage.getItem("firebase:authUser:AIzaSyC-Chsq9HzfjK81mYYYx7KO1BgT7QPPNMI:[DEFAULT]"));
 
 window.addEventListener('load', function(){
     if (user !== null){

@@ -58,3 +58,19 @@ function change(){
         window.alert(error.message);
     });
 }
+
+function reply(elem, id){
+    id = id.toString();
+    var text = elem.parentElement.previousSibling.value.trim();
+    if (text == ""){
+        return;
+    }
+    var innerhtml = '<div class="media text-left p-3 mt-1"><img src="' + user.photoURL + '" class="profile"><div class="media-body"><h4>' + user.displayName + '</h4><p>' + text + '</p></div></div>';
+    databaseref.child("all_posts").child(id).once('value').then(function(snap){
+        var html = snap.val().split("");
+        var toadd = html.slice(0, html.length - 12).join("") + innerhtml + '</div></div>';
+        databaseref.child("all_posts").update({
+            [id] : toadd
+        });
+    });
+}

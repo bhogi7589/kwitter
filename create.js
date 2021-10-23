@@ -16,13 +16,16 @@ auth = firebase.auth();
 user = JSON.parse(window.localStorage.getItem("firebase:authUser:AIzaSyC-Chsq9HzfjK81mYYYx7KO1BgT7QPPNMI:[DEFAULT]"));
 
 function create(){
-    var text = document.getElementById("post").innerHTML;
+    var text = document.getElementById("post").innerHTML.trim();
+    if (text == ""){
+        return;
+    }
     databaseref.child("posts").once('value').then(function(snap){
         var id = snap.val();
         databaseref.update({
             posts : id + 1
         });
-        var innerhtml = '<div class="media border rounded text-left p-3 mt-1"><img src="' + user.photoURL + '" class="mr-3 rounded-circle" style="width: 45px!important; height: 45px!important"><div class="media-body"><h4>' + user.displayName + '</h4><p>' + text + '</p></div></div>';
+        var innerhtml = '<div class="media border rounded text-left p-3 mt-1"><img src="' + user.photoURL + '" class="profile"><div class="media-body"><h4>' + user.displayName + '</h4><p>' + text + '</p><div class="input-group"><input type="text" class="form-control" placeholder="Enter Reply"><div class="input-group-append"><button class="btn btn-success" type="button" onclick="reply(this, ' + id.toString() + ')">Post Reply</button></div></div></div></div>';
         id = id.toString();
         databaseref.child("all_posts").update({
             [id] : innerhtml
