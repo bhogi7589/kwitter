@@ -15,3 +15,16 @@
     height: 45px!important;
     margin-right: 1rem!important;
 }
+
+body:not(.theme-dark) .border {
+    border-color: #000!important;
+}
+
+.nav-pills {
+    border-bottom: 5px solid #007bff;
+}
+
+.nav-link {
+    border-bottom-left-radius: 0!important;
+    border-bottom-right-radius: 0!important;
+}
