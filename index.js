@@ -31,7 +31,7 @@ window.addEventListener('load', function(){
     });
     databaseref.child(user.email.replace(".", "-")).child("rooms").on('value', function(snap){
         document.getElementById("rooms").innerHTML = "";
-        var rooms = snap.val().toString().split("~`~");
+        var rooms = snap.val().toString().split(",");
         for (var i = 0; i < rooms.length; i++){
             var key = rooms[i];
             if (key != ""){
@@ -97,9 +97,9 @@ function createroom(){
             name : room
         });
         databaseref.child(user.email.replace(".", "-")).child("rooms").once('value').then(function(snap){
-            var rooms = snap.val().toString().split("~`~");
+            var rooms = snap.val().toString().split(",");
             rooms.push(id);
-            var str_rooms = rooms.join("~`~");
+            var str_rooms = rooms.join(",");
             databaseref.child(user.email.replace(".", "-")).update({
                 rooms : str_rooms
             });
