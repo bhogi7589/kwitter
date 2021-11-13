@@ -29,7 +29,6 @@
                 <li class="nav-item"><a href="#profile" data-toggle="pill" class="nav-link"><span class="fa fa-user-circle-o"></span>&nbsp;&nbsp;Profile</a></li>
                 <li class="nav-item"><a href="#tools" data-toggle="pill" class="nav-link"><span class="fa fa-cogs"></span>&nbsp;&nbsp;Tools</a></li>
                 <li class="nav-item"><a href="#chat" data-toggle="pill" class="nav-link"><span class="fa fa-comments"></span>&nbsp;&nbsp;Chat</a></li>
-                <li class="nav-item"><a href="#upload" data-toggle="pill" class="nav-link"><span class="fa fa-cloud-upload"></span>&nbsp;&nbsp;Upload</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane container-fluid active" id="home"></div>
@@ -47,31 +46,6 @@
                 <div class="tab-pane container-fluid fade" id="chat">
                     <div class="btn-group-vertical w-100 pb-3" id="rooms"></div>
                     <button class="btn btn-success" type="button" onclick="createroom()">Create new room <span class="fa fa-plus"></span></button>
-                </div>
-                <div class="tab-pane container-fluid fade" id="upload">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="file" multiple>
-                        <label for="file" class="custom-file-label">Choose file</label>
-                    </div>
-                    <button class="btn btn-primary btn-block my-3" type="button" onclick="uploadfile()" data-toggle="modal" data-target="#link_modal"><span class="fa fa-upload"></span>&nbsp;Upload file</button>
-                    <div class="progress d-none" id="bar_parent">
-                        <div class="progress-bar bg-success" id="bar"></div>
-                    </div>
-                    <p class="text-success d-none" id="perc_parent">Upload is <span id="perc"></span>% done</p>
-                </div>
-            </div>
-        </div>
-        <div class="modal" id="link_modal">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Your File Links</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body" id="link_body"></div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div>
                 </div>
             </div>
         </div>
