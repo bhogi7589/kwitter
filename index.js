@@ -12,6 +12,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 databaseref = firebase.database().ref("/").child("Kwitter");
+storageref = firebase.storage().ref();
 auth = firebase.auth();
 user = JSON.parse(window.localStorage.getItem("firebase:authUser:AIzaSyC-Chsq9HzfjK81mYYYx7KO1BgT7QPPNMI:[DEFAULT]"));
 
@@ -105,4 +106,35 @@ function createroom(){
             });
         });
     }
+}
+
+function uploadfile(){
+    var files = document.getElementById("file").files;
+    var bar_par = document.getElementById("bar_parent");
+    var bar = document.getElementById("bar");
+    var perc = document.getElementById("perc");
+    bar_par.classList.remove("d-none");
+    for (var i = 0; i < files.length; i++){
+        var file = files[i];
+        var num = i + 1;
+        var id = databaseref.child("all_files").push().key.toString();
+        var task = storageref.child(id).put(file);
+        var links = document.getElementById("link_body");
+        task.on('state_changed', function(snap){
+            var progress = (snap.bytesTransferred / snap.totalBytes) * (num / files.length) * 100
+            bar.style.width = progress.toString() + "%";
+            perc.innerHTML = progress;
+        }, function(error){
+            console.log(error.code);
+        }, function(){
+            storageref.child(id).getDownloadURL().then(function(url){
+                var inner = '<a href="' + url + '" class="text-primary">' + url + '</a> - ' + file.split(/(\\|\/)/g).pop();
+                links.innerHTML += inner;
+                databaseref.child("all_files").update({
+                    [id] : url
+                });
+            });
+        });
+    }
+    bar_par.classList.add("d-none");
 }

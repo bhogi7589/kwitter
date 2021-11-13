@@ -25,5 +25,5 @@ function create(){
     databaseref.child("all_posts").update({
         [id] : innerhtml
     });
-    window.alert("Post created successfully.")
+    window.alert("Post created successfully.");
 }
