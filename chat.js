@@ -44,6 +44,7 @@ function send(){
     databaseref.child("all_rooms").child(id).child("all_posts").update({
         [post_id] : innerhtml
     });
+    document.getElementById("message").value = "";
 }
 
 function invite(){
